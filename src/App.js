@@ -1,23 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import React, { useState } from "react";
+import CountrySelector from "./CountrySelector"; 
+import StateSelector from "./StateSelector"; 
+import { Toaster } from "react-hot-toast"; 
 
 function App() {
+  const [selectedCountry, setSelectedCountry] = useState("");
+
+  const handleSelectCountry = (country) => {
+    setSelectedCountry(country);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="mainbody">
+      <h1>Country & State Selector</h1>
+      <CountrySelector onSelectCountry={handleSelectCountry} />
+      <StateSelector selectedCountry={selectedCountry} />
+      <Toaster /> 
     </div>
   );
 }
